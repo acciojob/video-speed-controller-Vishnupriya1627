@@ -1,51 +1,51 @@
-
-/* Your CSS Code here. */
 body {
-  background: #111;
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    font-family: Arial, sans-serif;
 }
 
 .player {
-  max-width: 750px;
-  border: 2px solid #fff;
-  background: #000;
+    width: 800px;
+    max-width: 90%;
+    background: #000;
+    overflow: hidden;
 }
 
 .viewer {
-  width: 100%;
-}
-
-.player__controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background: #222;
-}
-
-.player__button {
-  background: none;
-  border: 1px solid white;
-  color: white;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.player__slider {
-  width: 100px;
+    width: 100%;
+    display: block;
 }
 
 .progress {
-  background: #444;
-  height: 10px;
-  cursor: pointer;
+    background: #555;
+    height: 8px;
+    cursor: pointer;
 }
 
 .progress__filled {
-  width: 0%;
-  height: 100%;
-  background: red;
+    width: 0%;
+    height: 100%;
+    background: #ffc600;
+}
+
+.player__controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #333;
+}
+
+.player__button,
+.player__controls button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    cursor: pointer;
 }

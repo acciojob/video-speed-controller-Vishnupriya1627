@@ -1,72 +1,68 @@
-const player = document.querySelector('.player');
-const video = player.querySelector('.viewer');
-const progress = player.querySelector('.progress');
-const progressFilled = player.querySelector('.progress__filled');
-const toggle = player.querySelector('.toggle');
-const sliders = player.querySelectorAll('.player__slider');
-const skipButtons = player.querySelectorAll('[data-skip]');
-
+const video = document.querySelector(".viewer");
+const progress = document.querySelector(".progress");
+const progressFilled = document.querySelector(".progress__filled");
+const toggle = document.querySelector(".toggle");
+const volume = document.querySelector(".volume");
+const playbackSpeed = document.querySelector(".playbackSpeed");
+const skipButtons = document.querySelectorAll("[data-skip]");
 
 // Play / Pause
 function togglePlay() {
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
 }
 
-
-// Change button icon
+// Update Play/Pause Button
 function updateButton() {
-  toggle.textContent = video.paused ? '►' : '❚ ❚';
+    toggle.textContent = video.paused ? "►" : "❚ ❚";
 }
 
-
-// Update progress bar
+// Update Progress Bar
 function handleProgress() {
-  const percent = (video.currentTime / video.duration) * 100;
-  progressFilled.style.width = `${percent}%`;
+    const percent = (video.currentTime / video.duration) * 100;
+    progressFilled.style.width = `${percent}%`;
 }
 
+// Set Volume
+function handleVolume() {
+    video.volume = volume.value;
+}
 
-// Skip buttons
+// Set Playback Speed
+function handleSpeed() {
+    video.playbackRate = playbackSpeed.value;
+}
+
+// Skip Forward / Backward
 function skip() {
-  video.currentTime += parseFloat(this.dataset.skip);
+    video.currentTime += parseFloat(this.dataset.skip);
 }
 
-
-// Volume and playback speed
-function handleRangeUpdate() {
-  video[this.name] = this.value;
-}
-
-
-// Click on progress bar to seek
+// Seek Video by Clicking Progress Bar
 function scrub(e) {
-  const scrubTime =
-    (e.offsetX / progress.offsetWidth) * video.duration;
+    const scrubTime =
+        (e.offsetX / progress.offsetWidth) * video.duration;
 
-  video.currentTime = scrubTime;
+    video.currentTime = scrubTime;
 }
-
-
 
 // Event Listeners
-video.addEventListener('click', togglePlay);
-toggle.addEventListener('click', togglePlay);
+toggle.addEventListener("click", togglePlay);
 
-video.addEventListener('play', updateButton);
-video.addEventListener('pause', updateButton);
+video.addEventListener("play", updateButton);
+video.addEventListener("pause", updateButton);
 
-video.addEventListener('timeupdate', handleProgress);
+video.addEventListener("timeupdate", handleProgress);
 
-sliders.forEach(slider =>
-  slider.addEventListener('input', handleRangeUpdate)
-);
+volume.addEventListener("input", handleVolume);
+
+playbackSpeed.addEventListener("input", handleSpeed);
 
 skipButtons.forEach(button =>
-  button.addEventListener('click', skip)
+    button.addEventListener("click", skip)
 );
 
-progress.addEventListener('click', scrub);
+progress.addEventListener("click", scrub);
