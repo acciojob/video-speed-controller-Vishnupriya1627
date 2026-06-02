@@ -4,32 +4,35 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #222;
+    background: #222;
     font-family: Arial, sans-serif;
 }
 
 .player {
-    width: 800px;
-    max-width: 90%;
+    max-width: 800px;
+    width: 90%;
+    border: 2px solid #000;
     background: #000;
     overflow: hidden;
 }
 
-.viewer {
+.player__video {
     width: 100%;
     display: block;
 }
 
 .progress {
-    background: #555;
-    height: 8px;
+    height: 10px;
+    background: #444;
     cursor: pointer;
+    display: flex;
 }
 
 .progress__filled {
     width: 0%;
-    height: 100%;
+    flex-basis: 0%;
     background: #ffc600;
+    transition: flex-basis 0.1s;
 }
 
 .player__controls {
@@ -38,14 +41,24 @@ body {
     gap: 10px;
     padding: 10px;
     background: #333;
+    flex-wrap: wrap;
 }
 
 .player__button,
-.player__controls button {
+.rewind,
+.forward {
+    cursor: pointer;
     padding: 8px 12px;
+    border: none;
+}
+
+.player__slider {
     cursor: pointer;
 }
 
-input[type="range"] {
-    cursor: pointer;
+label {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
